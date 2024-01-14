@@ -16,14 +16,17 @@ public class Catalogo {
         //lista para los jugadores
         ArrayList<String> jugadoresBarca = new ArrayList<>();
         ArrayList<String> jugadoresMadrid = new ArrayList<>();
+        ArrayList<String> jugadoresCity = new ArrayList<>();
         //objeto catalogo
         Catalogo c1 = new Catalogo();
         //objetos equipo 
         Equipo e1 = new Equipo("FC Barcelona","Xavi","Spotify Camp Nou","4-3-3",jugadoresBarca,70,3);
-        Equipo e2 = new Equipo("Real Madrid CF","Ancelotti","Santiago Bernabeu","4-3-3",jugadoresMadrid,70,2);
-        jugadoresMadrid.add("Bellingham");
+        Equipo e2 = new Equipo("Real Madrid CF","Ancelotti","Santiago Bernabeu","4-3-3",jugadoresMadrid,60,2);
+        Equipo e3 = new Equipo("Manchester City CF","Pep Guardiola","Etihad Stadium","4-3-3",jugadoresCity,90,1);
         //añado jugador a la lista de jugadores 
         jugadoresBarca.add("Pedri");
+        jugadoresMadrid.add("Bellingham");
+        jugadoresCity.add("De Bruyne");
         //añado el objeto equipo al objeto catalogo
         c1.getEquipo().add(e1);
         c1.getEquipo().add(e2);
@@ -31,33 +34,43 @@ public class Catalogo {
         System.out.println(c1);
         System.out.println("----------------");
         //metodo 1
-        System.out.println("Número de elementos: "+numeroElementos(c1));
+        System.out.println("Número de elementos: "+numeroElementos());
         //metodo 2
-        System.out.println("¿La lista está vacía: "+estaVacio(c1));
+        System.out.println("¿La lista está vacía? "+estaVacio());
         // metodo 3
-        verElemento(1, c1);
+        verElemento(0);
+        // metodo 4
+        Catalogo nuevo = new Catalogo();
+        nuevo.getEquipo().add(e3);
+        cambiarElemento(0,nuevo);
         
         
     }
     //Atributo encapsulado
-    private ArrayList<Equipo> equipo ;
+    private static  ArrayList<Equipo> equipo ;
     
     //constructor parametrizado con lista sin elementos 
     public Catalogo() {
         equipo = new ArrayList<>();
     }
-    public static int numeroElementos(Catalogo c1){
-        return c1.getEquipo().size();
+    public static int numeroElementos(){
+        return equipo.size();
     }
-    public static boolean estaVacio(Catalogo c1){
-        boolean vacio = false;
-        if(c1.getEquipo().size()>1){
-            vacio = true;
-        }
-        return vacio;
+    public static boolean estaVacio(){
+//        boolean vacio = false;
+//        if(c1.getEquipo().size()>0){
+//            vacio = true;
+//        }
+//        return vacio;
+        return equipo.isEmpty();
     }
-    public static void verElemento(int num, Catalogo c1){
-         System.out.println("Elemento de la posicion "+num+" es: "+ c1.getEquipo().get(num));
+    public static void verElemento(int num){
+         System.out.println("Elemento de la posicion "+num+" es: "+ equipo.get(num));
+    }
+    public static void cambiarElemento(int num,Catalogo nuevo){
+        equipo.set(num, nuevo.getEquipo().get(num));
+        nuevo.getEquipo().set(num, equipo.get(num));
+        System.out.println("Objeto 1: "+equipo.get(num)+ "\n" + "Objeto 2: "+nuevo.getEquipo().get(num));
     }
     public ArrayList<Equipo> getEquipo() {
         return equipo;
