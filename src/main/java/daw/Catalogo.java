@@ -5,6 +5,8 @@
 package daw;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 
 /**
@@ -12,78 +14,80 @@ import java.util.Objects;
  * @author aiman
  */
 public class Catalogo {
-    public static void main(String[] args) {
-        //lista para los jugadores
-        ArrayList<String> jugadoresBarca = new ArrayList<>();
-        ArrayList<String> jugadoresMadrid = new ArrayList<>();
-        ArrayList<String> jugadoresCity = new ArrayList<>();
-        //objeto catalogo
-        Catalogo c1 = new Catalogo();
-        //objetos equipo 
-        Equipo e1 = new Equipo("FC Barcelona","Xavi","Spotify Camp Nou","4-3-3",jugadoresBarca,70,3);
-        Equipo e2 = new Equipo("Real Madrid CF","Ancelotti","Santiago Bernabeu","4-3-3",jugadoresMadrid,60,2);
-        Equipo e3 = new Equipo("Manchester City CF","Pep Guardiola","Etihad Stadium","4-3-3",jugadoresCity,90,1);
-        //añado jugador a la lista de jugadores 
-        jugadoresBarca.add("Pedri");
-        jugadoresMadrid.add("Bellingham");
-        jugadoresCity.add("De Bruyne");
-        //añado el objeto equipo al objeto catalogo
-        c1.getEquipo().add(e1);
-        c1.getEquipo().add(e2);
-        //muestro
-        System.out.println(c1);
-        System.out.println("----------------");
-        //metodo 1
-        System.out.println("Número de elementos: "+numeroElementos());
-        //metodo 2
-        System.out.println("¿La lista está vacía? "+estaVacio());
-        // metodo 3
-        verElemento(0);
-        // metodo 4
-        Catalogo nuevo = new Catalogo();
-        nuevo.getEquipo().add(e3);
-        cambiarElemento(0,nuevo);
-        
-        
-    }
     //Atributo encapsulado
-    private static  ArrayList<Equipo> equipo ;
+    private ArrayList<Equipo> listaEquipos ;
     
     //constructor parametrizado con lista sin elementos 
     public Catalogo() {
-        equipo = new ArrayList<>();
+        listaEquipos = new ArrayList<>();
     }
-    public static int numeroElementos(){
-        return equipo.size();
+    public  int numeroElementos(){
+        return listaEquipos.size();
     }
-    public static boolean estaVacio(){
+    public  boolean estaVacio(){
 //        boolean vacio = false;
 //        if(c1.getEquipo().size()>0){
 //            vacio = true;
 //        }
 //        return vacio;
-        return equipo.isEmpty();
+        return listaEquipos.isEmpty();
     }
-    public static void verElemento(int num){
-         System.out.println("Elemento de la posicion "+num+" es: "+ equipo.get(num));
+    public  void verElemento(int num){
+         System.out.println("Elemento de la posicion "+num+" es: "+ listaEquipos.get(num));
     }
-    public static void cambiarElemento(int num,Catalogo nuevo){
-        equipo.set(num, nuevo.getEquipo().get(num));
-        nuevo.getEquipo().set(num, equipo.get(num));
-        System.out.println("Objeto 1: "+equipo.get(num)+ "\n" + "Objeto 2: "+nuevo.getEquipo().get(num));
+    public  void cambiarElemento(int num,Equipo nuevo){
+        listaEquipos.set(num, nuevo);
+        System.out.println("Objeto 1: "+listaEquipos.get(num));
+    }
+    public void guardarElemento(Equipo e1){
+        listaEquipos.add(e1);
+        System.out.println("Guardar elemento: "+e1);
+    }
+    public void eliminarPosicion(int num){
+        listaEquipos.remove(num);
+        System.out.println("Eliminar elemento: "+listaEquipos.get(num));
+    }
+    public void eliminarElemento(Equipo e1){
+        listaEquipos.remove(e1);
+        System.out.println("Eliminar elemento: "+e1);
+    }
+    public void eliminarElementos(ArrayList<Equipo> equipo){
+        listaEquipos.removeAll(equipo);
+        System.out.println("Eliminar elemento de la lista: "+equipo);
+    }   
+    public void eliminarTodo(){
+        listaEquipos.clear();
+    }
+    public void imprimirCatalogos(Catalogo c1){
+        System.out.println(c1);
+    }
+    public int buscarElemento(Equipo e1){
+        return listaEquipos.indexOf(e1) ;
+    }
+    public void ordenacionPuntos(){
+//        Collections.sort(listaEquipos,(k1,k2)->k1.getPuntos()-k2.getPuntos());
+        Comparator<Equipo> criterio =(k1,k2)->k1.getPuntos()-k2.getPuntos();
+        Collections.sort(listaEquipos,criterio.reversed());
+    }
+    public void ordenacionNomEquipo(){
+        Collections.sort(listaEquipos,(e1,e2)->e1.getNomEquipo().compareToIgnoreCase(e2.getNomEquipo()));
+    }
+    public int  busquedaBinaria(Catalogo c1){
+        int posicion = Collections.binarySearch(listaEquipos, listaEquipos.get(0),(e1,e2)->listaEquipos.get(0).getAlineacion().compareToIgnoreCase(e2.getAlineacion()));
+        return posicion;
     }
     public ArrayList<Equipo> getEquipo() {
-        return equipo;
+        return listaEquipos;
     }
 
     public void setEquipo(ArrayList<Equipo> equipo) {
-        this.equipo = equipo;
+        this.listaEquipos = equipo;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + Objects.hashCode(this.equipo);
+        hash = 31 * hash + Objects.hashCode(this.listaEquipos);
         return hash;
     }
 
@@ -99,12 +103,12 @@ public class Catalogo {
             return false;
         }
         final Catalogo other = (Catalogo) obj;
-        return Objects.equals(this.equipo, other.equipo);
+        return Objects.equals(this.listaEquipos, other.listaEquipos);
     }
 
     @Override
     public String toString() {
-        return "Catalogo{" + "equipo=" + equipo + '}';
+        return "Catalogo{" + "equipo=" + listaEquipos + '}';
     }
     
 }
