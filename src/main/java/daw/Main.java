@@ -39,11 +39,9 @@ public class Main {
         System.out.println("¿La lista está vacía? "+c1.estaVacio());
         System.out.println("");
         // metodo 3
-//        verElemento(0);
+        c1.verElemento(0);
         // metodo 4
-        Catalogo nuevo = new Catalogo();
-        nuevo.getEquipo().add(e3);
-//        cambiarElemento(0,nuevo);
+        c1.cambiarElemento(0,e1);
         //metodo 5 
         c1.guardarElemento(e1);
         //metodo 6 
@@ -59,8 +57,8 @@ public class Main {
         c1.eliminarElementos(equipo);
         System.out.println(c1);
         //eliminarTodos(), borra todos los objetos.
-//        c1.eliminarTodo();
-//        System.out.println(c1);
+        c1.eliminarTodo();
+        System.out.println(c1);
         //imprimirCatalogo (). Imprime los objetos contenidos en el catálogo
         System.out.println("-------");
         
