@@ -21,10 +21,10 @@ public class Catalogo {
     public Catalogo() {
         listaEquipos = new ArrayList<>();
     }
-    public  int numeroElementos(){
+    public int numeroElementos(){
         return listaEquipos.size();
     }
-    public  boolean estaVacio(){
+    public boolean estaVacio(){
 //        boolean vacio = false;
 //        if(c1.getEquipo().size()>0){
 //            vacio = true;
@@ -32,10 +32,12 @@ public class Catalogo {
 //        return vacio;
         return listaEquipos.isEmpty();
     }
-    public  void verElemento(int num){
+    public void verElemento(int num){
          System.out.println("Elemento de la posicion "+num+" es: "+ listaEquipos.get(num));
+         //hacer una condicion y controlarlo con excepciones
     }
-    public  void cambiarElemento(int num,Equipo nuevo){
+    public void cambiarElemento(int num,Equipo nuevo){
+        //hacer una condicion  
         listaEquipos.set(num, nuevo);
         System.out.println("Objeto 1: "+listaEquipos.get(num));
     }
@@ -59,7 +61,7 @@ public class Catalogo {
         listaEquipos.clear();
     }
     public void imprimirCatalogos(Catalogo c1){
-        System.out.println(c1);
+        listaEquipos.forEach(System.out::println);
     }
     public int buscarElemento(Equipo e1){
         return listaEquipos.indexOf(e1) ;
