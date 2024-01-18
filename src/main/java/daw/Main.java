@@ -18,9 +18,12 @@ public class Main {
         //objeto catalogo
         Catalogo c1 = new Catalogo();
         //objetos equipo 
-        Equipo e1 = new Equipo("FC Barcelona","Xavi","Spotify Camp Nou","4-3-1",jugadoresBarca,70,3);
-        Equipo e2 = new Equipo("Real Madrid CF","Ancelotti","Santiago Bernabeu","4-3-1",jugadoresMadrid,60,2);
-        Equipo e3 = new Equipo("Manchester City CF","Pep Guardiola","Etihad Stadium","4-3-1",jugadoresCity,90,1);
+        Equipo e1 = new Equipo("FC Barcelona","Xavi",
+                "Spotify Camp Nou","4-3-3",jugadoresBarca,70,3);
+        Equipo e2 = new Equipo("Real Madrid CF","Ancelotti",
+                "Santiago Bernabeu","4-3-3",jugadoresMadrid,60,2);
+        Equipo e3 = new Equipo("Manchester City CF","Pep Guardiola",
+                "Etihad Stadium","4-3-1",jugadoresCity,90,1);
         //añado jugador a la lista de jugadores 
         jugadoresBarca.add("Pedri");
         jugadoresMadrid.add("Bellingham");
@@ -79,6 +82,6 @@ public class Main {
         c1.ordenacionNomEquipo();
         System.out.println(c1);
         System.out.println("---------------");
-        System.out.println(c1.busquedaBinaria(c1));
+        System.out.println(c1.busquedaBinaria(equipo));
     }
 }

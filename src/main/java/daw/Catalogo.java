@@ -22,7 +22,7 @@ public class Catalogo {
         listaEquipos = new ArrayList<>();
     }
     public int numeroElementos(){
-        return listaEquipos.size();
+         return listaEquipos.size();
     }
     public boolean estaVacio(){
 //        boolean vacio = false;
@@ -32,9 +32,10 @@ public class Catalogo {
 //        return vacio;
         return listaEquipos.isEmpty();
     }
-    public void verElemento(int num){
-         System.out.println("Elemento de la posicion "+num+" es: "+ listaEquipos.get(num));
+    public Equipo verElemento(int num){
+//         System.out.println("Elemento de la posicion "+num+" es: "+ listaEquipos.get(num));
          //hacer una condicion y controlarlo con excepciones
+         return listaEquipos.get(num); 
     }
     public void cambiarElemento(int num,Equipo nuevo){
         //hacer una condicion  
@@ -74,8 +75,9 @@ public class Catalogo {
     public void ordenacionNomEquipo(){
         Collections.sort(listaEquipos,(e1,e2)->e1.getNomEquipo().compareToIgnoreCase(e2.getNomEquipo()));
     }
-    public int  busquedaBinaria(Catalogo c1){
-        int posicion = Collections.binarySearch(listaEquipos, listaEquipos.get(0),(e1,e2)->listaEquipos.get(0).getAlineacion().compareToIgnoreCase(e2.getAlineacion()));
+    public int  busquedaBinaria(ArrayList<Equipo> listEquipos){
+        int posicion = Collections.binarySearch(listaEquipos, 
+                listaEquipos.get(0),(e1,e2)->e1.getNomEquipo().compareToIgnoreCase(e2.getNomEquipo()));
         return posicion;
     }
     public ArrayList<Equipo> getEquipo() {
